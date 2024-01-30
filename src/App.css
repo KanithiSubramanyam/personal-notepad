@@ -15,7 +15,7 @@ body {
     font-family: 'Vibur', cursive;
     font-family: 'Book Antiqa';
     
-opacity: .95;
+    opacity: .95;
 }
 
 form {
@@ -34,14 +34,15 @@ form {
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 530px) {
   form{
     margin-top: 40px;
     min-height: 400px;
     width: 300px;
-    background-image: url('./images/Wallpaper.jpg');
-
   }
+  body {
+    background-image: url('./images/Wallpaper.jpg');
+ }
 }
 form .con {
     display: -webkit-flex;
