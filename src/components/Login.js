@@ -24,7 +24,7 @@ const Login = () => {
     <>
           <ToastContainer position="bottom-right" autoClose={2000} hideProgressBar={false} />
       <div className="overlay">
-        <form onSubmit={handleFormSubmit}>
+        <form className = 'form' onSubmit={handleFormSubmit}>
           <div className="con">
             <header className="head-form">
               <h2>Log In</h2>
