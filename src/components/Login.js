@@ -1,24 +1,28 @@
 import React, { useState } from 'react';
+import {useNavigate } from 'react-router-dom';
+import { ToastContainer ,toast } from 'react-toastify';
 
 const Login = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const [password, setPassword] = useState('');
-
+  const [username, setUsername] = useState('');
+  const navigate = useNavigate();
+  
   const togglePasswordVisibility = () => {
     setPasswordShown(!passwordShown);
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted with password:', password);
-  };
+    if (username === 'sravani' && password === 'subbu') {
+      navigate('/dashboard');
+    } else {
+      toast.error('Login failed. Please check your username and password.');
+    }  };
 
   return (
     <>
+          <ToastContainer position="bottom-right" autoClose={2000} hideProgressBar={false} />
       <div className="overlay">
         <form onSubmit={handleFormSubmit}>
           <div className="con">
@@ -37,6 +41,9 @@ const Login = () => {
                 type="text"
                 placeholder="@UserName"
                 required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+
               />
               <br />
               <span className="input-item">
@@ -47,7 +54,7 @@ const Login = () => {
                 type={passwordShown ? 'text' : 'password'}
                 placeholder="Password"
                 value={password}
-                onChange={handlePasswordChange}
+                onChange={(e) => setPassword(e.target.value)}
                 name="password"
                 required
               />
