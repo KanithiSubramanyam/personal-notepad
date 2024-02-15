@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Notepad from './Notepad';
 import CreateProject from '../Modals/CreateProject';
-
+import '../App.css';
 const Dashboard = () => {
   const [modal, setModal] = useState(false);
   const [notesList, setnotesList] = useState([]);
@@ -61,7 +61,7 @@ const Dashboard = () => {
   }, []);
     return (
         <>
-        <div style={{ backgroundImage: `url(${Image})`}} >
+        <div className='intalPage'>
         <div className='sidebar' >
           <div className='task-board'>
             <div className='heading'>

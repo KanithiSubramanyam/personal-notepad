@@ -80,26 +80,27 @@ const Notes = ({ saveNotes, notes }) => {
         </div>
         <form>
           <div className='notes-data'>
-            <ReactQuill
-              theme="snow"
-              modules={modules}
-              formats={formats}
-              value={data ? data : ''}
-              onChange={handleChange}
-              style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.7)',
-                color: '#FFF',
-                border: 'none',
-                borderRadius: '5px',
-                boxShadow: '6px 6px 8px rgba(21, 21, 21, 0.2)',
-                minHeight: '500px',
-                maxHeight: '500px',
-                backgroundImage: 'url(../images/back1.jpg)',
-                backgroundSize: 'cover'
-              }}
-              className='quill data'
-              preserveWhitespace
-            />
+          <ReactQuill
+  theme="snow"
+  modules={modules}
+  formats={formats}
+  value={data ? data : ''}
+  onChange={handleChange}
+  style={{
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    color: '#000',
+    border: 'none',
+    borderRadius: '5px',
+    boxShadow: '6px 6px 8px rgba(21, 21, 21, 0.2)',
+    minHeight: '500px',
+    maxHeight: '500px',
+    backgroundImage: 'linear-gradient(to top, #a8edea 0%, #fed6e3 100%)',
+    backgroundSize: 'cover'
+  }}
+  className='quill data'
+  preserveWhitespace
+/>
+
           </div>
         </form>
       </div>
