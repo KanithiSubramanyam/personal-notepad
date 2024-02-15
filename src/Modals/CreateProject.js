@@ -10,13 +10,20 @@ const CreateProject = ({modal, toggle, save}) => {
        if(name === 'notesName'){
             setnotesName(value);
        }
-       
     }
-    const handleSave = () =>{
-        let taskObj = {};
-        taskObj['Name'] = notesName;
+
+    const handleSave = () => {
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleString();
+
+        let taskObj = {
+            Name: notesName,
+            Date: formattedDate
+        };
+
         save(taskObj);
     }
+
     return (
         <>
             <Modal isOpen={modal} toggle={toggle}>
@@ -25,20 +32,19 @@ const CreateProject = ({modal, toggle, save}) => {
                     <form>
                         <div className='form-group name'>
                             <label>Note Name</label>
-                            <input type='text' className='form-control' value={notesName} onChange = {handleChange} name='notesName' required></input>
+                            <input type='text' className='form-control' value={notesName} onChange={handleChange} name='notesName' required></input>
                         </div>
                     </form>
                 </ModalBody>
                 <ModalFooter>
-                <Button color="primary" onClick={handleSave}>
-                    Create Note
-                </Button>{' '}
-                <Button color="secondary" onClick={toggle}>
-                    Cancel
-                </Button>
+                    <Button color="primary" onClick={handleSave}>
+                        Create Note
+                    </Button>{' '}
+                    <Button color="secondary" onClick={toggle}>
+                        Cancel
+                    </Button>
                 </ModalFooter>
             </Modal>
-        
         </>
     );
 };

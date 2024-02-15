@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {useNavigate } from 'react-router-dom';
 import { ToastContainer ,toast } from 'react-toastify';
-
+import '../App.css';
 const Login = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const [password, setPassword] = useState('');
@@ -22,8 +22,9 @@ const Login = () => {
 
   return (
     <>
+    <div className= 'Login'>
           <ToastContainer position="bottom-right" autoClose={2000} hideProgressBar={false} />
-      <div className="overlay">
+      <div className="overlay" >
         <form className = 'form' onSubmit={handleFormSubmit}>
           <div className="con">
             <header className="head-form">
@@ -68,6 +69,7 @@ const Login = () => {
             </div>
           </div>
         </form>
+      </div>
       </div>
     </>
   );

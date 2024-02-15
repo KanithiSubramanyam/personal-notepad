@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import Notepad from './Notepad';
 import CreateProject from '../Modals/CreateProject';
 
 const Dashboard = () => {
   const [modal, setModal] = useState(false);
-  const [notesLIst, setnotesLIst] = useState([]);
+  const [notesList, setnotesList] = useState([]);
   const [selectedNotes, setselectedNotes] = useState('');
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -13,27 +14,31 @@ const Dashboard = () => {
     setModal(!modal);
   };
 
-  const saveProject = (taskObj) => {
-    let tempList = [...notesLIst, taskObj];
-    try {
-      localStorage.setItem('notesData', JSON.stringify({ notesLIst: tempList, activeButtonIndex }));
-      setnotesLIst(tempList);
-    } catch (error) {
-      setError('Error saving project data');
-      console.error('Error saving project data:', error);
-    } finally {
-      setModal(false);
-    }
-  };
+  const savenotes = (taskObj) => {
+    const currentDate = new Date();
+    taskObj['Date'] = currentDate.toLocaleString(); 
 
-  const handleProjectClick = (index) => {
-    setselectedNotes(notesLIst[index]);
+    let tempList = [...notesList, taskObj];
+    try {
+        localStorage.setItem('notesData', JSON.stringify({ notesList: tempList, activeButtonIndex }));
+        setnotesList(tempList);
+    } catch (error) {
+        setError('Error saving notes data');
+        console.error('Error saving notes data:', error);
+    } finally {
+        setModal(false);
+    }
+};
+
+
+  const handlenotesClick = (index) => {
+    setselectedNotes(notesList[index]);
     setActiveButtonIndex(index);
     try {
-      localStorage.setItem('notesData', JSON.stringify({ notesLIst, activeButtonIndex: index }));
+      localStorage.setItem('notesData', JSON.stringify({ notesList, activeButtonIndex: index }));
     } catch (error) {
-      setError('Error updating project data');
-      console.error('Error updating project data:', error);
+      setError('Error updating notes data');
+      console.error('Error updating notes data:', error);
     }
   };
 
@@ -42,38 +47,39 @@ const Dashboard = () => {
       setLoading(true);
       let storedData = localStorage.getItem('notesData');
       if (storedData) {
-        let { notesLIst, activeButtonIndex } = JSON.parse(storedData);
-        setnotesLIst(notesLIst);
+        let { notesList, activeButtonIndex } = JSON.parse(storedData);
+        setnotesList(notesList);
         setActiveButtonIndex(activeButtonIndex);
-        setselectedNotes(notesLIst[activeButtonIndex]);
+        setselectedNotes(notesList[activeButtonIndex]);
       }
     } catch (error) {
-      setError('Error fetching project data');
-      console.error('Error fetching project data:', error);
+      setError('Error fetching notes data');
+      console.error('Error fetching notes data:', error);
     } finally {
       setLoading(false);
     }
   }, []);
     return (
         <>
-        <div className='sidebar'>
+        <div style={{ backgroundImage: `url(${Image})`}} >
+        <div className='sidebar' >
           <div className='task-board'>
             <div className='heading'>
               <p>My Notes</p>
             </div>
             <div className='task-container'>
-              <div className='notesLIst'>
+              <div className='notesList'>
                 {loading ? (
                   <p>Loading...</p>
                 ) : error ? (
                   <p>Error: {error}</p>
                 ) : (
-                  notesLIst &&
-                  notesLIst.map((object, index) => (
+                  notesList &&
+                  notesList.map((object, index) => (
                     <p
                       key={index}
                       className={` ${activeButtonIndex === index ? 'active' : ''}`}
-                      onClick={() => handleProjectClick(index)}
+                      onClick={() => handlenotesClick(index)}
                     >
                       {object.Name}
                     </p>
@@ -81,13 +87,14 @@ const Dashboard = () => {
                 )}
               </div>
             </div>
-            <div className='projectBtn'>
+            <div className='notesBtn'>
               <p onClick={toggle}>+ New Note</p>
             </div>
           </div>
         </div>
-        {/* <div className='content'>{selectedNotes && <TodoData project={selectedNotes} />}</div> */}
-        <CreateProject toggle={toggle} modal={modal} save={saveProject} />
+        <div className='content'>{selectedNotes && <Notepad notes={selectedNotes} />}</div>
+        </div>
+        <CreateProject toggle={toggle} modal={modal} save={savenotes} />
       </>
     );
 };

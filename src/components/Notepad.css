@@ -1,0 +1,44 @@
+.notepad-container{
+    width: 800px;
+    min-height: 500px;
+    margin-top: 20px;
+}
+.tododata{
+    margin-left: 100px;
+}
+  .title{
+    background-color: aqua;
+    font-size: 25px;
+    box-shadow: 6px 6px 8px rgba(21, 21, 21, 0.2);
+    text-align: center;
+    font-family: 'Book Antiqua';
+    font-weight: 600;
+  }
+  .notes-data{
+    border: none;
+    margin-top: 20px;
+  }
+  .data-content{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    border: none;
+  }
+
+  .info{
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    width: 220px;
+    margin-left: 40px;
+    margin-top: 80px;
+    box-shadow: 16px 16px 8px rgba(21, 21, 21, 0.2);
+    border-radius: 5px;
+    padding: 2%;
+    height: 300px;
+  }
+  .quill.data .ql-editor {
+    min-height: 400px;
+    background-image: url(../images/back1.jpg);
+background-size: cover;
+    max-height: 400px; /* Set a maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
