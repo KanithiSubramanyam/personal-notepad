@@ -15,12 +15,31 @@ body {
   font-family: 'Book Antiqua';
   opacity: .9;
 }
+body.default {
+  background-image: linear-gradient(to top, #97ede9 0%, #eab1c3 120%);
+}
+body.theme1{
+  background-image: linear-gradient(to top, #00ddd2 0%, #d73a6c 120%);
+}
+body.theme2{
+  background-image: linear-gradient(to top, #7ba7ff 0%, #d7613a 120%);
+}
 
+.theme-options{
+    margin-left: 1000px;
+    margin-top: 20px;
+  }
+.theme-options button{
+  margin: 5px;
+  border-radius: 10px;
+  padding: 3px;
+  background-color: #cdcdff;
+}
 .form {
   width: 450px;
   min-height: 500px;
   height: auto;
-  margin: 4% auto;
+  margin: 2% auto;
   padding: 2%;
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 10px 32px 0 rgba(31, 38, 135, 0.37);
